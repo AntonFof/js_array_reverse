@@ -7,45 +7,53 @@ describe(`Function 'arrayReverse':`, () => {
     expect(arrayReverse).toBeInstanceOf(Function);
   });
 
-  it(`should return an array`, () => {
-    expect(arrayReverse(['Mate', 'Academy'])).toBeInstanceOf(Array);
-    expect(arrayReverse(['Mate', 'Academy'])).toHaveLength(2);
+  it(`an empty array
+    `, () => {
+    expect(arrayReverse([])).toEqual([]);
   });
 
-  it(`should return an empty string
-    if original array consists of an empty string`, () => {
-    expect(arrayReverse(['', 'am'])).toEqual(['', 'ma']);
-    expect(arrayReverse(['am', ''])).toEqual(['ma', '']);
-    expect(arrayReverse(['', ''])).toEqual(['', '']);
+  it(`1 word`, () => {
+    expect(arrayReverse(['Casablanca'])).toEqual(['acnalbasaC']);
   });
 
-  it(`should does not change length of the strings`, () => {
-    const words = ['I', 'am', 'a', 'student!'];
-
-    expect(words[0]).toHaveLength(1);
-    expect(words[1]).toHaveLength(2);
-    expect(words[2]).toHaveLength(1);
-    expect(words[3]).toHaveLength(8);
-
-    const actual = arrayReverse(words);
-    const expected = ['!', 'tn', 'e', 'dutsamaI'];
-
-    expect(actual[0]).toHaveLength(1);
-    expect(actual[1]).toHaveLength(2);
-    expect(actual[2]).toHaveLength(1);
-    expect(actual[3]).toHaveLength(8);
-    expect(actual).toEqual(expected);
-  });
-
-  it(`should work properly with diff arrays`, () => {
-    expect(arrayReverse(['Hell0'])).toEqual(['0lleH']);
-
+  it(`2 words`, () => {
     expect(arrayReverse(['Mate', 'Academy'])).toEqual(['ymed', 'acAetaM']);
+  });
 
-    expect(arrayReverse(['Hi', 'Mate', 'Academy']))
-      .toEqual(['ym', 'edac', 'AetaMiH']);
+  it(`an empty strings
+    `, () => {
+    expect(arrayReverse(['', '', ''])).toEqual(['', '', '']);
+  });
 
-    expect(arrayReverse(['I', 'am', 'a', 'student!']))
-      .toEqual(['!', 'tn', 'e', 'dutsamaI']);
+  it(`an empty string in the beginning
+    `, () => {
+    expect(arrayReverse(['', 'Academy'])).toEqual(['', 'ymedacA']);
+  });
+
+  it(`an empty string in the end
+    `, () => {
+    expect(arrayReverse(['Academy', ''])).toEqual(['ymedacA', '']);
+  });
+
+  it(`an empty string in the middle
+    `, () => {
+    expect(arrayReverse(['Mate', '', 'Academy'])).toEqual([
+      'ymed',
+      '',
+      'acAetaM',
+    ]);
+  });
+
+  it(`'words' === ['Hell0']`, () => {
+    expect(arrayReverse(['Hell0'])).toEqual(['0lleH']);
+  });
+
+  it(`few words`, () => {
+    expect(arrayReverse(['I', 'am', 'a', 'student!'])).toEqual([
+      '!',
+      'tn',
+      'e',
+      'dutsamaI',
+    ]);
   });
 });
